@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import { Form, Input, Tooltip, Checkbox, Button, message } from "antd";
+import React from "react";
+import { Form, Input, Tooltip, Checkbox, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import "./style.scss";
-import { useDispatch } from "react-redux";
-import { warehouseActions } from "../../reducers/ReduxSlice";
-import { formatString, idGenerator } from "./Helpers";
 import { IProduct } from "../../sharedInterfaces/IProduct";
-import { useHistory } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {
@@ -30,47 +26,26 @@ const tailFormItemLayout = {
     },
   },
 };
+
 interface IProps {
   productToEdit?: IProduct;
+  onSubmit: any;
+  form: any;
 }
-
-export const ProductForm: React.FC<IProps> = ({ productToEdit }) => {
-  const [form] = Form.useForm();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const createNewProduct = (product: any): void => {
-    dispatch(warehouseActions.addProduct(product));
-    form.resetFields();
-    message.success("Product has been created");
-  };
-  const updateExistingProduct = (product: any): void => {
-    dispatch(warehouseActions.editProduct(product));
-    history.goBack();
-    message.success("Product has been updated");
-  };
-  const onFinish = (values: any): void => {
-    const product = {
-      id: productToEdit ? productToEdit.id : idGenerator(),
-      name: formatString(values.name),
-      ean: values.ean,
-      type: formatString(values.type),
-      weight: values.weight + "kg",
-      color: formatString(values.color),
-      price: "$" + values.price,
-      quantity: values.quantity,
-      active: values.active,
-    };
-    productToEdit ? updateExistingProduct(product) : createNewProduct(product);
-  };
-
+/**
+ * Component responsible for drawing the product form component
+ * @param productToEdit contains a product object
+ * @param onSubmit contains the form submit function
+ * @param form contains the form instance
+ */
+export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, form }) => {
   return (
     <div className="product-list-table">
       <Form
         {...formItemLayout}
         form={form}
         name="productForm"
-        onFinish={onFinish}
+        onFinish={onSubmit}
         initialValues={
           productToEdit
             ? {

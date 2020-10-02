@@ -1,3 +1,3 @@
-import { ProductForm } from "./ProductForm";
+import { ProductFormLogic } from "./ProductFormLogic";
 
-export { ProductForm };
+export { ProductFormLogic as ProductForm };
