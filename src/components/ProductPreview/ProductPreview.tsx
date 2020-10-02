@@ -58,7 +58,7 @@ export const ProductPreview: React.FC = () => {
       title: "Active",
       dataIndex: "active",
       key: "active",
-      render: (text: boolean, record: any) => (text ? <p>Active</p> : <p>Disabled</p>),
+      render: (text: boolean, record: any) => (text ? "Active" : "Disabled"),
     },
   ];
 
@@ -77,7 +77,7 @@ export const ProductPreview: React.FC = () => {
         onBack={() => {
           history.goBack();
         }}
-        title="View product"
+        title="Product detailed view"
       />
       <Tabs defaultActiveKey="1">
         <TabPane tab="Product details" key="1">

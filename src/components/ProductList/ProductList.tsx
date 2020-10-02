@@ -1,6 +1,6 @@
-import { Table } from "antd";
+import { PageHeader, Table } from "antd";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IRootState } from "../../reducers/CombinedReducer";
@@ -82,5 +82,17 @@ export const ProductList: React.FC = () => {
     },
   ];
 
-  return <Table dataSource={products} columns={columns} scroll={{ x: 800 }} />;
+  return (
+    <Fragment>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => {
+          history.goBack();
+        }}
+        title="Product list"
+        subTitle="You can edit your products and view more detailed information from here"
+      />
+      <Table dataSource={products} columns={columns} scroll={{ x: 800 }} />
+    </Fragment>
+  );
 };
