@@ -15,18 +15,22 @@ interface ParamTypes {
  */
 export const QuantityChart: React.FC = () => {
   let { id } = useParams<ParamTypes>();
+
   const { quantityHistory } = useSelector((state: IRootState) => state.productHistoryData);
+
   const quantity: IQuantityHistory[] = quantityHistory.filter((item: IQuantityHistory) => item.productId === id);
+
   let chartData: any = [];
+
   quantity.forEach((element: IQuantityHistory) => {
     element.history.forEach((node: IQuantityHistoryNode) => {
       let date = new Date(node.timeStamp);
       let quantity = node.quantity;
       let nodeInstance = [date, quantity];
-      console.log(nodeInstance);
       chartData.push(nodeInstance);
     });
   });
+
   const options = {
     title: {
       text: "Quantity units in time",
@@ -76,5 +80,6 @@ export const QuantityChart: React.FC = () => {
       ],
     },
   };
+
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };

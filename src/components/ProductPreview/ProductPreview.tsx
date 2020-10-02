@@ -17,6 +17,7 @@ interface ParamTypes {
  */
 export const ProductPreview: React.FC = () => {
   const { TabPane } = Tabs;
+
   const columns = [
     {
       title: "Name",
@@ -60,9 +61,13 @@ export const ProductPreview: React.FC = () => {
       render: (text: boolean, record: any) => (text ? <p>Active</p> : <p>Disabled</p>),
     },
   ];
+
   let { id } = useParams<ParamTypes>();
+
   const { products } = useSelector((state: IRootState) => state.warehouseData);
+
   const product: IProduct[] = products.filter((product: IProduct) => product.id === id);
+
   const history = useHistory();
 
   return (

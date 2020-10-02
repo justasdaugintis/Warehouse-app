@@ -8,7 +8,8 @@ export interface IWarehouseState {
 export const initialState: IWarehouseState = {
   products: [
     {
-      id: "product:id:11111",
+      key: "product:id:123456789",
+      id: "product:id:123456789",
       name: "Gibson SG",
       ean: 8724104487780,
       type: "Solid body",
@@ -19,7 +20,8 @@ export const initialState: IWarehouseState = {
       active: true,
     },
     {
-      id: "product:id:2222222",
+      key: "product:id:987654321",
+      id: "product:id:987654321",
       name: "Fender Stratocaster",
       ean: 5158142776816,
       type: "Solid body",

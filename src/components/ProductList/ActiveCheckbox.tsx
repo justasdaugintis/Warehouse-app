@@ -1,6 +1,6 @@
 import { Checkbox, Space } from "antd";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
-import * as React from "react";
+import React from "react";
 
 // Components props
 interface IProps {

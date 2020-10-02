@@ -15,10 +15,13 @@ interface IProps {
 }
 /**
  * Component responsible for passing logic to the form component
+ * @param productToEdit contains a product object which is to be edited
  */
 export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
   const [form] = Form.useForm();
+
   const dispatch = useDispatch();
+
   const history = useHistory();
 
   /**
@@ -30,6 +33,7 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
     form.resetFields();
     message.success("Product has been created");
   };
+
   /**
    *  Function to update existing product
    * @param product contains the product object
@@ -39,6 +43,7 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
     history.goBack();
     message.success("Product has been updated");
   };
+
   /**
    *  Function to update products price history
    * @param product contains the product object
@@ -50,6 +55,7 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
     };
     dispatch(productHistoryActions.setPriceHistory(priceInstance));
   };
+
   /**
    *  Function to update products quantity history
    * @param product contains the product object
@@ -61,13 +67,16 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
     };
     dispatch(productHistoryActions.setQuantityHistory(quantityInstance));
   };
+
   /**
    *  Function called when user clicks submit on the form
    * @param values contains values from the form inputs
    */
   const onSubmit = (values: any): void => {
+    const id = idGenerator();
     const product: IProduct = {
-      id: productToEdit ? productToEdit.id : idGenerator(),
+      key: productToEdit ? productToEdit.key : id,
+      id: productToEdit ? productToEdit.id : id,
       name: formatString(values.name),
       ean: values.ean,
       type: formatString(values.type),

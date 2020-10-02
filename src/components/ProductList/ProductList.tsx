@@ -1,6 +1,6 @@
-import { Checkbox, Space, Table } from "antd";
+import { Table } from "antd";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
-import * as React from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IRootState } from "../../reducers/CombinedReducer";
@@ -13,11 +13,15 @@ import { Buttons } from "./Buttons";
  */
 export const ProductList: React.FC = () => {
   const { products } = useSelector((state: IRootState) => state.warehouseData);
+
   const dispatch = useDispatch();
+
   const history = useHistory();
+
   const deleteProduct = (record: any): void => {
     dispatch(warehouseActions.deleteProduct(record.id));
   };
+
   const tickCheckbox = (e: CheckboxChangeEvent, record: any) => {
     let payload = {
       id: record.id,
@@ -25,6 +29,7 @@ export const ProductList: React.FC = () => {
     };
     dispatch(warehouseActions.setProductActive(payload));
   };
+
   const columns = [
     {
       title: "Name",

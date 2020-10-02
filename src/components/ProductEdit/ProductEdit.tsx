@@ -6,6 +6,7 @@ import { IRootState } from "../../reducers/CombinedReducer";
 import { IProduct } from "../../sharedInterfaces/IProduct";
 import { ProductForm } from "../ProductForm";
 
+//Parameter passed down from react router
 interface ParamTypes {
   id: string;
 }
@@ -14,9 +15,13 @@ interface ParamTypes {
  */
 export const ProductEdit: React.FC = () => {
   let { id } = useParams<ParamTypes>();
+
   const { products } = useSelector((state: IRootState) => state.warehouseData);
+
   const product: IProduct | undefined = products.find((product: IProduct) => product.id === id);
+
   const history = useHistory();
+
   return (
     <Fragment>
       <PageHeader

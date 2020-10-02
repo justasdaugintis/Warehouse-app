@@ -1,5 +1,5 @@
 import { Button, Space } from "antd";
-import * as React from "react";
+import React from "react";
 
 // Components props
 interface IProps {

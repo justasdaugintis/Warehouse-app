@@ -15,9 +15,13 @@ interface ParamTypes {
  */
 export const PriceChart: React.FC = () => {
   let { id } = useParams<ParamTypes>();
+
   const { priceHistory } = useSelector((state: IRootState) => state.productHistoryData);
+
   const product: IPriceHistory[] = priceHistory.filter((priceHistory: IPriceHistory) => priceHistory.productId === id);
+
   let chartData: any = [];
+
   product.forEach((element: IPriceHistory) => {
     element.history.forEach((node: IPriceHistoryNode) => {
       let price = parseInt(node.price.replace("$", ""));
@@ -26,6 +30,7 @@ export const PriceChart: React.FC = () => {
       chartData.push(nodeInstance);
     });
   });
+
   const options = {
     title: {
       text: "Price points in time",
@@ -75,5 +80,6 @@ export const PriceChart: React.FC = () => {
       ],
     },
   };
+
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };

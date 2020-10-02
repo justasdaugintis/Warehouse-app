@@ -34,7 +34,7 @@ interface IProps {
 }
 /**
  * Component responsible for drawing the product form component
- * @param productToEdit contains a product object
+ * @param productToEdit contains a product object which is to be edited
  * @param onSubmit contains the form submit function
  * @param form contains the form instance
  */
