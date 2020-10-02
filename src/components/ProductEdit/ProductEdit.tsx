@@ -10,7 +10,7 @@ interface ParamTypes {
   id: string;
 }
 /**
- *  Component
+ *  Component which allows user to edit a product entry
  */
 export const ProductEdit: React.FC = () => {
   let { id } = useParams<ParamTypes>();

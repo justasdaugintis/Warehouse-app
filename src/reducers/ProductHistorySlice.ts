@@ -12,9 +12,12 @@ export const initialState: IProductHistoryState = {
   priceHistory: [],
 };
 
+/**
+ *  Contains the reducer and actions for product history
+ */
 export const productHistorySlice = createSlice({
   initialState: initialState,
-  name: "productWarehouse",
+  name: "productHistory",
   reducers: {
     setQuantityHistory: (state: IProductHistoryState, { payload }: PayloadAction<any>): void => {
       state.quantityHistory = [

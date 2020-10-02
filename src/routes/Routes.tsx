@@ -6,7 +6,7 @@ import { ProductNew } from "../components/ProductNew";
 import { ProductPreview } from "../components/ProductPreview";
 
 /**
- * Application layout component
+ * Application routes
  */
 const Routes: React.FC = () => {
   return (

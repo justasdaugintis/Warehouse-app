@@ -6,11 +6,12 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { IQuantityHistory, IQuantityHistoryNode } from "../../sharedInterfaces/IQuantityHistory";
 
+//Parameter passed down from react router
 interface ParamTypes {
   id: string;
 }
 /**
- *  Component
+ *  Component responsible for rendering the quantity history chart
  */
 export const QuantityChart: React.FC = () => {
   let { id } = useParams<ParamTypes>();

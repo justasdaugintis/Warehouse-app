@@ -8,15 +8,15 @@ import { IProduct } from "../../sharedInterfaces/IProduct";
 import { PriceChart } from "./PriceChart";
 import { QuantityChart } from "./QuantityChart";
 
-const { TabPane } = Tabs;
-
+//Parameter passed down from react router
 interface ParamTypes {
   id: string;
 }
 /**
- *  Component
+ *  Component responsible for rendering the product detailed view component
  */
 export const ProductPreview: React.FC = () => {
+  const { TabPane } = Tabs;
   const columns = [
     {
       title: "Name",
@@ -64,9 +64,7 @@ export const ProductPreview: React.FC = () => {
   const { products } = useSelector((state: IRootState) => state.warehouseData);
   const product: IProduct[] = products.filter((product: IProduct) => product.id === id);
   const history = useHistory();
-  function callback(key: any) {
-    console.log(key);
-  }
+
   return (
     <Fragment>
       <PageHeader
@@ -76,7 +74,7 @@ export const ProductPreview: React.FC = () => {
         }}
         title="View product"
       />
-      <Tabs defaultActiveKey="1" onChange={callback}>
+      <Tabs defaultActiveKey="1">
         <TabPane tab="Product details" key="1">
           <Table dataSource={product} columns={columns} scroll={{ x: 800 }} />
         </TabPane>

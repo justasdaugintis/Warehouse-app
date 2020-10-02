@@ -6,11 +6,12 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { IPriceHistory, IPriceHistoryNode } from "../../sharedInterfaces/IPriceHistory";
 
+//Parameter passed down from react router
 interface ParamTypes {
   id: string;
 }
 /**
- *  Component
+ *  Component responsible for rendering the price history chart
  */
 export const PriceChart: React.FC = () => {
   let { id } = useParams<ParamTypes>();

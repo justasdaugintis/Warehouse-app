@@ -32,7 +32,10 @@ export const initialState: IWarehouseState = {
   ],
 };
 
-export const warehouseSlice = createSlice({
+/**
+ *  Contains the reducer and actions for products
+ */
+export const productSlice = createSlice({
   initialState: initialState,
   name: "productWarehouse",
   reducers: {
@@ -78,6 +81,6 @@ export const warehouseSlice = createSlice({
   },
 });
 
-export const warehouseActions = warehouseSlice.actions;
+export const warehouseActions = productSlice.actions;
 
-export const warehouseReducer = warehouseSlice.reducer;
+export const warehouseReducer = productSlice.reducer;
