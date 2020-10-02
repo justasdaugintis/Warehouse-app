@@ -1,19 +1,30 @@
-import { Button, Checkbox, Space, Table } from "antd";
+import { Checkbox, Space, Table } from "antd";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IRootState } from "../../reducers/CombinedReducer";
-import { warehouseActions } from "../../reducers/ReduxSlice";
+import { warehouseActions } from "../../reducers/ProductSlice";
+import { ActiveCheckbox } from "./ActiveCheckbox";
+import { Buttons } from "./Buttons";
 
 /**
- *  Component responsible for passing business logic into the the templates table
+ *  Component responsible for rendering product list
  */
 export const ProductList: React.FC = () => {
   const { products } = useSelector((state: IRootState) => state.warehouseData);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const deleteProduct = (record: any): void => {
+    dispatch(warehouseActions.deleteProduct(record.id));
+  };
+  const tickCheckbox = (e: CheckboxChangeEvent, record: any) => {
+    let payload = {
+      id: record.id,
+      isActive: e.target.checked,
+    };
+    dispatch(warehouseActions.setProductActive(payload));
+  };
   const columns = [
     {
       title: "Name",
@@ -55,56 +66,14 @@ export const ProductList: React.FC = () => {
       dataIndex: "active",
       key: "active",
       render: (text: boolean, record: any) => (
-        <Space size="middle">
-          <Checkbox
-            defaultChecked={text ? true : false}
-            onChange={(e: CheckboxChangeEvent) => {
-              let payload = {
-                id: record.id,
-                isActive: e.target.checked,
-              };
-              dispatch(warehouseActions.setProductActive(payload));
-            }}
-          >
-            Active
-          </Checkbox>
-        </Space>
+        <ActiveCheckbox text={text} record={record} tickCheckbox={tickCheckbox} />
       ),
     },
     {
       title: "Actions",
       dataIndex: "actions",
       key: "actions",
-      render: (text: any, record: any) => (
-        <Space size="small">
-          <Button
-            type="primary"
-            onClick={() => {
-              history.push(`/products/${record.id}`);
-            }}
-          >
-            VIEW
-          </Button>
-          <Button
-            type="primary"
-            ghost
-            onClick={() => {
-              history.push(`/products/${record.id}/edit`);
-            }}
-          >
-            EDIT
-          </Button>
-          <Button
-            type="primary"
-            danger
-            onClick={() => {
-              dispatch(warehouseActions.deleteProduct(record.id));
-            }}
-          >
-            DELETE
-          </Button>
-        </Space>
-      ),
+      render: (text: any, record: any) => <Buttons history={history} record={record} deleteProduct={deleteProduct} />,
     },
   ];
 
