@@ -41,6 +41,16 @@ export const ProductList: React.FC = () => {
       key: "color",
     },
     {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+    },
+    {
       title: "Active",
       dataIndex: "active",
       key: "active",

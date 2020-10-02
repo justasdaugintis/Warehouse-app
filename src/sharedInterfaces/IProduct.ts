@@ -5,5 +5,7 @@ export interface IProduct {
   type: string;
   weight: string;
   color: string;
+  price: string;
+  quantity: number;
   active: boolean;
 }
