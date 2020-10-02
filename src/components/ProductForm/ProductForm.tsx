@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Tooltip, Checkbox, Button, message } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import "./style.scss";
 import { useDispatch } from "react-redux";
 import { warehouseActions } from "../../reducers/ReduxSlice";
 import { formatString, idGenerator } from "./Helpers";
+import { IProduct } from "../../sharedInterfaces/IProduct";
+import { useHistory } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {
@@ -28,24 +30,38 @@ const tailFormItemLayout = {
     },
   },
 };
+interface IProps {
+  productToEdit?: IProduct;
+}
 
-export const ProductForm = () => {
+export const ProductForm: React.FC<IProps> = ({ productToEdit }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const onFinish = (values: any) => {
+  const createNewProduct = (product: any): void => {
+    dispatch(warehouseActions.addProduct(product));
+    form.resetFields();
+    message.success("Product has been created");
+  };
+  const updateExistingProduct = (product: any): void => {
+    dispatch(warehouseActions.editProduct(product));
+    history.goBack();
+    message.success("Product has been updated");
+  };
+  const onFinish = (values: any): void => {
     const product = {
-      id: idGenerator(),
+      id: productToEdit ? productToEdit.id : idGenerator(),
       name: formatString(values.name),
       ean: values.ean,
       type: formatString(values.type),
       weight: values.weight + "kg",
       color: formatString(values.color),
+      price: "$" + values.price,
+      quantity: values.quantity,
       active: values.active,
     };
-    dispatch(warehouseActions.addProduct(product));
-    form.resetFields();
-    message.success("Product has been created");
+    productToEdit ? updateExistingProduct(product) : createNewProduct(product);
   };
 
   return (
@@ -55,9 +71,20 @@ export const ProductForm = () => {
         form={form}
         name="productForm"
         onFinish={onFinish}
-        initialValues={{
-          active: true,
-        }}
+        initialValues={
+          productToEdit
+            ? {
+                name: productToEdit.name,
+                ean: productToEdit.ean,
+                type: productToEdit.type,
+                weight: productToEdit.weight.replace("kg", ""),
+                color: productToEdit.color,
+                price: productToEdit.price.replace("$", ""),
+                quantity: productToEdit.quantity,
+                active: productToEdit.active,
+              }
+            : {}
+        }
         scrollToFirstError
       >
         <Form.Item
@@ -143,6 +170,42 @@ export const ProductForm = () => {
             {
               pattern: /^[a-zA-Z]+$/,
               message: "Color should not contain any special characters",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="price"
+          label="Price in dollars"
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Price is required",
+            },
+            {
+              pattern: /^\d+(\.\d+)*$/,
+              message: "Price should not contain any special characters",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="quantity"
+          label="Quantity"
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Quantity is required",
+            },
+            {
+              pattern: /^(0|[1-9][0-9]*)$/,
+              message: "Quantity should only contain whole numbers or zero",
             },
           ]}
         >
