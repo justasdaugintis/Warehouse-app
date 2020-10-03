@@ -31,6 +31,7 @@ interface IProps {
   productToEdit?: IProduct;
   onSubmit: any;
   form: any;
+  translate: any;
 }
 /**
  * Component responsible for drawing the product form component
@@ -38,7 +39,7 @@ interface IProps {
  * @param onSubmit contains the form submit function
  * @param form contains the form instance
  */
-export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, form }) => {
+export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, form, translate }) => {
   return (
     <div className="product-list-table">
       <Form
@@ -64,12 +65,12 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
       >
         <Form.Item
           name="name"
-          label="Name"
+          label={translate({ id: "productForm.name" })}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Product name is required",
+              message: translate({ id: "productForm.nameRequired" }),
             },
           ]}
         >
@@ -81,7 +82,7 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
           label={
             <span>
               EAN&nbsp;
-              <Tooltip title="European Article Number - 13 digit product identifier">
+              <Tooltip title={translate({ id: "productForm.eanTooltip" })}>
                 <QuestionCircleOutlined />
               </Tooltip>
             </span>
@@ -89,11 +90,11 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
           rules={[
             {
               required: true,
-              message: "EAN is required",
+              message: translate({ id: "productForm.eanRequired" }),
             },
             {
               pattern: /^$|^\d{13}$/,
-              message: "Please enter a valid EAN",
+              message: translate({ id: "productForm.eanWrong" }),
             },
           ]}
           hasFeedback
@@ -103,12 +104,12 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
 
         <Form.Item
           name="type"
-          label="Type"
+          label={translate({ id: "productForm.type" })}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Product type is required",
+              message: translate({ id: "productForm.typeRequired" }),
             },
           ]}
         >
@@ -117,16 +118,16 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
 
         <Form.Item
           name="weight"
-          label="Weight in kg"
+          label={translate({ id: "productForm.weight" })}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Product weight is required",
+              message: translate({ id: "productForm.weightRequired" }),
             },
             {
               pattern: /^\d+(\.\d+)*$/,
-              message: "Please enter a valid weight",
+              message: translate({ id: "productForm.weightWrong" }),
             },
           ]}
         >
@@ -135,16 +136,16 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
 
         <Form.Item
           name="color"
-          label="Color"
+          label={translate({ id: "productForm.color" })}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Color description is required",
+              message: translate({ id: "productForm.colorRequired" }),
             },
             {
               pattern: /^[a-zA-Z]+$/,
-              message: "Color should not contain any special characters",
+              message: translate({ id: "productForm.colorWrong" }),
             },
           ]}
         >
@@ -153,16 +154,16 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
 
         <Form.Item
           name="price"
-          label="Price in dollars"
+          label={translate({ id: "productForm.price" })}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Price is required",
+              message: translate({ id: "productForm.priceRequired" }),
             },
             {
               pattern: /^\d+(\.\d+)*$/,
-              message: "Price should not contain any special characters",
+              message: translate({ id: "productForm.priceWrong" }),
             },
           ]}
         >
@@ -171,29 +172,29 @@ export const ProductFormView: React.FC<IProps> = ({ productToEdit, onSubmit, for
 
         <Form.Item
           name="quantity"
-          label="Quantity"
+          label={translate({ id: "productForm.quantity" })}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Quantity is required",
+              message: translate({ id: "productForm.quantityRequired" }),
             },
             {
               pattern: /^(0|[1-9][0-9]*)$/,
-              message: "Quantity should only contain whole numbers or zero",
+              message: translate({ id: "productForm.quantityWrong" }),
             },
           ]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item name="active" label="Active" valuePropName="checked">
+        <Form.Item name="active" label={translate({ id: "productForm.active" })} valuePropName="checked">
           <Checkbox />
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Save
+            {translate({ id: "productForm.saveButton" })}
           </Button>
         </Form.Item>
       </Form>

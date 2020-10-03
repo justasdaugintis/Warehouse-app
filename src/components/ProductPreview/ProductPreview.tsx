@@ -7,6 +7,7 @@ import { IRootState } from "../../reducers/CombinedReducer";
 import { IProduct } from "../../sharedInterfaces/IProduct";
 import { PriceChart } from "./PriceChart";
 import { QuantityChart } from "./QuantityChart";
+import { useFormatMessage } from "react-intl-hooks";
 
 //Parameter passed down from react router
 interface ParamTypes {
@@ -17,48 +18,49 @@ interface ParamTypes {
  */
 export const ProductPreview: React.FC = () => {
   const { TabPane } = Tabs;
-
+  const translate = useFormatMessage();
   const columns = [
     {
-      title: "Name",
+      title: translate({ id: "productListTable.name" }),
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "EAN",
+      title: translate({ id: "productListTable.ean" }),
       dataIndex: "ean",
       key: "ean",
     },
     {
-      title: "Type",
+      title: translate({ id: "productListTable.type" }),
       dataIndex: "type",
       key: "type",
     },
     {
-      title: "Weight",
+      title: translate({ id: "productListTable.weight" }),
       dataIndex: "weight",
       key: "weight",
     },
     {
-      title: "Color",
+      title: translate({ id: "productListTable.color" }),
       dataIndex: "color",
       key: "color",
     },
     {
-      title: "Price",
+      title: translate({ id: "productListTable.price" }),
       dataIndex: "price",
       key: "price",
     },
     {
-      title: "Quantity",
+      title: translate({ id: "productListTable.quantity" }),
       dataIndex: "quantity",
       key: "quantity",
     },
     {
-      title: "Active",
+      title: translate({ id: "productListTable.active" }),
       dataIndex: "active",
       key: "active",
-      render: (text: boolean, record: any) => (text ? "Active" : "Disabled"),
+      render: (text: boolean, record: any) =>
+        text ? translate({ id: "productListTable.active" }) : translate({ id: "productListTable.disabled" }),
     },
   ];
 
@@ -77,16 +79,16 @@ export const ProductPreview: React.FC = () => {
         onBack={() => {
           history.goBack();
         }}
-        title="Product detailed view"
+        title={translate({ id: "productPreview.pageHeaderTitle" })}
       />
       <Tabs defaultActiveKey="1">
-        <TabPane tab="Product details" key="1">
+        <TabPane tab={translate({ id: "productPreview.detailsTab" })} key="1">
           <Table dataSource={product} columns={columns} scroll={{ x: 800 }} />
         </TabPane>
-        <TabPane tab="Price history" key="2">
+        <TabPane tab={translate({ id: "productPreview.priceHistoryTab" })} key="2">
           <PriceChart />
         </TabPane>
-        <TabPane tab="Quantity history" key="3">
+        <TabPane tab={translate({ id: "productPreview.quantityHistoryTab" })} key="3">
           <QuantityChart />
         </TabPane>
       </Tabs>

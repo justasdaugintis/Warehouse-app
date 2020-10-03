@@ -5,6 +5,7 @@ import { IRootState } from "../../reducers/CombinedReducer";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { IQuantityHistory, IQuantityHistoryNode } from "../../sharedInterfaces/IQuantityHistory";
+import { useFormatMessage } from "react-intl-hooks";
 
 //Parameter passed down from react router
 interface ParamTypes {
@@ -15,6 +16,8 @@ interface ParamTypes {
  */
 export const QuantityChart: React.FC = () => {
   let { id } = useParams<ParamTypes>();
+
+  const translate = useFormatMessage();
 
   const { quantityHistory } = useSelector((state: IRootState) => state.productHistoryData);
 
@@ -33,7 +36,7 @@ export const QuantityChart: React.FC = () => {
 
   const options = {
     title: {
-      text: "Quantity units in time",
+      text: translate({ id: "quantityHistoryChart.title" }),
     },
     xAxis: {
       type: "datetime",
@@ -47,12 +50,12 @@ export const QuantityChart: React.FC = () => {
         year: "%b",
       },
       title: {
-        text: "Date",
+        text: translate({ id: "quantityHistoryChart.xAxisTitle" }),
       },
     },
     yAxis: {
       title: {
-        text: "Quantity (units)",
+        text: translate({ id: "quantityHistoryChart.yAxisTitle" }),
       },
       min: 0,
     },

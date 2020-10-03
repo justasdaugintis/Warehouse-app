@@ -1,24 +1,27 @@
 import React from "react";
-import { getStore } from "./store/AppStore";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
-import { AppLayout } from "./appLayout";
 import { BrowserRouter as Router } from "react-router-dom";
+import { AppLayout } from "./appLayout";
+import { IntlProvider } from "react-intl-hooks";
+import locale_en from "./languageFiles/en.json";
+import locale_lt from "./languageFiles/lt.json";
 import "antd/dist/antd.css";
+import { useSelector } from "react-redux";
+import { IRootState } from "./reducers/CombinedReducer";
 
-const store = getStore();
-const persistor = persistStore(store);
+const translatedMessages: any = {
+  en: locale_en,
+  lt: locale_lt,
+};
 
 function App() {
+  const { language } = useSelector((state: IRootState) => state.languageData);
+
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Router>
-          <AppLayout />
-        </Router>
-      </PersistGate>
-    </Provider>
+    <IntlProvider locale={language} messages={translatedMessages[language]} defaultLocale="en">
+      <Router>
+        <AppLayout />
+      </Router>
+    </IntlProvider>
   );
 }
 

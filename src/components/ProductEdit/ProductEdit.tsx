@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { IRootState } from "../../reducers/CombinedReducer";
 import { IProduct } from "../../sharedInterfaces/IProduct";
 import { ProductForm } from "../ProductForm";
+import { useFormatMessage } from "react-intl-hooks";
 
 //Parameter passed down from react router
 interface ParamTypes {
@@ -14,6 +15,8 @@ interface ParamTypes {
  *  Component which allows user to edit a product entry
  */
 export const ProductEdit: React.FC = () => {
+  const translate = useFormatMessage();
+
   let { id } = useParams<ParamTypes>();
 
   const { products } = useSelector((state: IRootState) => state.warehouseData);
@@ -29,7 +32,7 @@ export const ProductEdit: React.FC = () => {
         onBack={() => {
           history.goBack();
         }}
-        title="Edit product"
+        title={translate({ id: "productEdit.title" })}
       />
       <ProductForm productToEdit={product} />
     </Fragment>

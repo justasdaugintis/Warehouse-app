@@ -5,16 +5,20 @@ import { IRootState } from "../../reducers/CombinedReducer";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { IPriceHistory, IPriceHistoryNode } from "../../sharedInterfaces/IPriceHistory";
+import { useFormatMessage } from "react-intl-hooks";
 
 //Parameter passed down from react router
 interface ParamTypes {
   id: string;
 }
+
 /**
  *  Component responsible for rendering the price history chart
  */
 export const PriceChart: React.FC = () => {
   let { id } = useParams<ParamTypes>();
+
+  const translate = useFormatMessage();
 
   const { priceHistory } = useSelector((state: IRootState) => state.productHistoryData);
 
@@ -33,7 +37,7 @@ export const PriceChart: React.FC = () => {
 
   const options = {
     title: {
-      text: "Price points in time",
+      text: translate({ id: "priceHistoryChart.title" }),
     },
     xAxis: {
       type: "datetime",
@@ -47,12 +51,12 @@ export const PriceChart: React.FC = () => {
         year: "%b",
       },
       title: {
-        text: "Date",
+        text: translate({ id: "priceHistoryChart.xAxisTitle" }),
       },
     },
     yAxis: {
       title: {
-        text: "Price ($)",
+        text: translate({ id: "priceHistoryChart.yAxisTitle" }),
       },
       min: 0,
     },

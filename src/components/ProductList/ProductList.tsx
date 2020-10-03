@@ -7,7 +7,7 @@ import { IRootState } from "../../reducers/CombinedReducer";
 import { warehouseActions } from "../../reducers/ProductSlice";
 import { ActiveCheckbox } from "./ActiveCheckbox";
 import { Buttons } from "./Buttons";
-
+import { useFormatMessage } from "react-intl-hooks";
 /**
  *  Component responsible for rendering product list
  */
@@ -22,6 +22,8 @@ export const ProductList: React.FC = () => {
     dispatch(warehouseActions.deleteProduct(record.id));
   };
 
+  const translate = useFormatMessage();
+
   const tickCheckbox = (e: CheckboxChangeEvent, record: any) => {
     let payload = {
       id: record.id,
@@ -32,53 +34,55 @@ export const ProductList: React.FC = () => {
 
   const columns = [
     {
-      title: "Name",
+      title: translate({ id: "productListTable.name" }),
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "EAN",
+      title: translate({ id: "productListTable.ean" }),
       dataIndex: "ean",
       key: "ean",
     },
     {
-      title: "Type",
+      title: translate({ id: "productListTable.type" }),
       dataIndex: "type",
       key: "type",
     },
     {
-      title: "Weight",
+      title: translate({ id: "productListTable.weight" }),
       dataIndex: "weight",
       key: "weight",
     },
     {
-      title: "Color",
+      title: translate({ id: "productListTable.color" }),
       dataIndex: "color",
       key: "color",
     },
     {
-      title: "Price",
+      title: translate({ id: "productListTable.price" }),
       dataIndex: "price",
       key: "price",
     },
     {
-      title: "Quantity",
+      title: translate({ id: "productListTable.quantity" }),
       dataIndex: "quantity",
       key: "quantity",
     },
     {
-      title: "Active",
+      title: translate({ id: "productListTable.active" }),
       dataIndex: "active",
       key: "active",
       render: (text: boolean, record: any) => (
-        <ActiveCheckbox text={text} record={record} tickCheckbox={tickCheckbox} />
+        <ActiveCheckbox text={text} record={record} tickCheckbox={tickCheckbox} translate={translate} />
       ),
     },
     {
-      title: "Actions",
+      title: translate({ id: "productListTable.actions" }),
       dataIndex: "actions",
       key: "actions",
-      render: (text: any, record: any) => <Buttons history={history} record={record} deleteProduct={deleteProduct} />,
+      render: (text: any, record: any) => (
+        <Buttons history={history} record={record} deleteProduct={deleteProduct} translate={translate} />
+      ),
     },
   ];
 
@@ -89,8 +93,8 @@ export const ProductList: React.FC = () => {
         onBack={() => {
           history.goBack();
         }}
-        title="Product list"
-        subTitle="You can edit your products and view more detailed information from here"
+        title={translate({ id: "productListTable.pageHeaderTitle" })}
+        subTitle={translate({ id: "productListTable.pageHeaderSubtitle" })}
       />
       <Table dataSource={products} columns={columns} scroll={{ x: 800 }} />
     </Fragment>

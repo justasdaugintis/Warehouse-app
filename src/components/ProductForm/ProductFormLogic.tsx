@@ -9,6 +9,8 @@ import { productHistoryActions } from "../../reducers/ProductHistorySlice";
 import { ProductFormView } from "./ProductFormView";
 import "./style.scss";
 
+import { useFormatMessage } from "react-intl-hooks";
+
 // Components props
 interface IProps {
   productToEdit?: IProduct;
@@ -24,6 +26,8 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
 
   const history = useHistory();
 
+  const translate = useFormatMessage();
+
   /**
    *  Function to create a new product
    * @param product contains the product object
@@ -31,7 +35,7 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
   const createNewProduct = (product: any): void => {
     dispatch(warehouseActions.addProduct(product));
     form.resetFields();
-    message.success("Product has been created");
+    message.success(translate({ id: "productForm.productSaved" }));
   };
 
   /**
@@ -41,7 +45,7 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
   const updateExistingProduct = (product: any): void => {
     dispatch(warehouseActions.editProduct(product));
     history.goBack();
-    message.success("Product has been updated");
+    message.success(translate({ id: "productForm.productEdited" }));
   };
 
   /**
@@ -99,5 +103,5 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
     productToEdit ? updateExistingProduct(product) : createNewProduct(product);
   };
 
-  return <ProductFormView onSubmit={onSubmit} productToEdit={productToEdit} form={form} />;
+  return <ProductFormView translate={translate} onSubmit={onSubmit} productToEdit={productToEdit} form={form} />;
 };

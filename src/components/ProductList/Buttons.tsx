@@ -6,14 +6,16 @@ interface IProps {
   history: any;
   record: any;
   deleteProduct: any;
+  translate: any;
 }
 /**
  * Form buttons
  * @param history contains router history
  * @param record contains selected row details
  * @param deleteProduct contains function to delete row/product
+ * @param translate contains translate function
  */
-export const Buttons: React.FC<IProps> = ({ history, record, deleteProduct }) => {
+export const Buttons: React.FC<IProps> = ({ history, record, deleteProduct, translate }) => {
   return (
     <Space size="small">
       <Button
@@ -22,7 +24,7 @@ export const Buttons: React.FC<IProps> = ({ history, record, deleteProduct }) =>
           history.push(`/products/${record.id}`);
         }}
       >
-        VIEW
+        {translate({ id: "productListTable.viewButton" })}
       </Button>
       <Button
         type="primary"
@@ -31,7 +33,7 @@ export const Buttons: React.FC<IProps> = ({ history, record, deleteProduct }) =>
           history.push(`/products/${record.id}/edit`);
         }}
       >
-        EDIT
+        {translate({ id: "productListTable.editButton" })}
       </Button>
       <Button
         type="primary"
@@ -40,7 +42,7 @@ export const Buttons: React.FC<IProps> = ({ history, record, deleteProduct }) =>
           deleteProduct(record);
         }}
       >
-        DELETE
+        {translate({ id: "productListTable.deleteButton" })}
       </Button>
     </Space>
   );

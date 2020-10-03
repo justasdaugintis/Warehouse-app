@@ -7,14 +7,16 @@ interface IProps {
   text: any;
   record: any;
   tickCheckbox: any;
+  translate: any;
 }
 /**
  * Checkbox component rendered in the product list component
  * @param text contains input value
  * @param record contains selected row details
  * @param tickCheckbox contains function to set product activity state
+ * @param translate contains translate function
  */
-export const ActiveCheckbox: React.FC<IProps> = ({ text, record, tickCheckbox }) => {
+export const ActiveCheckbox: React.FC<IProps> = ({ text, record, tickCheckbox, translate }) => {
   return (
     <Space size="middle">
       <Checkbox
@@ -23,7 +25,7 @@ export const ActiveCheckbox: React.FC<IProps> = ({ text, record, tickCheckbox })
           tickCheckbox(e, record);
         }}
       >
-        Active
+        {translate({ id: "productListTable.activeCheckbox" })}
       </Checkbox>
     </Space>
   );
