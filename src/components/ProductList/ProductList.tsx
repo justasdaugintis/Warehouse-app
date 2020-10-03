@@ -1,6 +1,6 @@
 import { PageHeader, Table } from "antd";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IRootState } from "../../reducers/CombinedReducer";
@@ -8,11 +8,14 @@ import { warehouseActions } from "../../reducers/ProductSlice";
 import { ActiveCheckbox } from "./ActiveCheckbox";
 import { Buttons } from "./Buttons";
 import { useFormatMessage } from "react-intl-hooks";
+import { IProduct } from "../../sharedInterfaces/IProduct";
 /**
  *  Component responsible for rendering product list
  */
 export const ProductList: React.FC = () => {
   const { products } = useSelector((state: IRootState) => state.warehouseData);
+
+  const [selectedRowKeys, setSelectedRowKeys] = useState<any>([]);
 
   const dispatch = useDispatch();
 
@@ -24,6 +27,15 @@ export const ProductList: React.FC = () => {
 
   const translate = useFormatMessage();
 
+  const onSelectChange = (selectedRowKeys: any) => {
+    setSelectedRowKeys(selectedRowKeys);
+  };
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
   const tickCheckbox = (e: CheckboxChangeEvent, record: any) => {
     let payload = {
       id: record.id,
@@ -31,6 +43,17 @@ export const ProductList: React.FC = () => {
     };
     dispatch(warehouseActions.setProductActive(payload));
   };
+
+  useEffect(() => {
+    //selects rows that have quantity equal to 0
+    const rowsToSelect: any = [];
+    products.forEach((product: IProduct) => {
+      if (product.quantity === 0) {
+        rowsToSelect.push(product.id);
+      }
+    });
+    setSelectedRowKeys(rowsToSelect);
+  }, []);
 
   const columns = [
     {
@@ -96,7 +119,7 @@ export const ProductList: React.FC = () => {
         title={translate({ id: "productListTable.pageHeaderTitle" })}
         subTitle={translate({ id: "productListTable.pageHeaderSubtitle" })}
       />
-      <Table dataSource={products} columns={columns} scroll={{ x: 800 }} />
+      <Table dataSource={products} columns={columns} scroll={{ x: 800 }} rowSelection={rowSelection} />
     </Fragment>
   );
 };

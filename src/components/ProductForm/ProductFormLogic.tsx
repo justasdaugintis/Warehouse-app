@@ -35,6 +35,7 @@ export const ProductFormLogic: React.FC<IProps> = ({ productToEdit }) => {
   const createNewProduct = (product: any): void => {
     dispatch(warehouseActions.addProduct(product));
     form.resetFields();
+    history.goBack();
     message.success(translate({ id: "productForm.productSaved" }));
   };
 
