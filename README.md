@@ -2,13 +2,13 @@
 Technical task for Talech
 
 ## Tools used
-Create-react-app for app skeleton
-Redux/toolkit for state management
-Redux-persist for persisting state to local storage
-Ant Design UI framework for UI elements and layout
-React-router for routing
-React-intl for internationalization
-Highcharts for data visualization in charts
+- Create-react-app for app skeleton
+- Redux/toolkit for state management
+- Redux-persist for persisting state to local storage
+- Ant Design UI framework for UI elements and layout
+- React-router for routing
+- React-intl for internationalization
+- Highcharts for data visualization in charts
 
 ## Available Scripts
 
