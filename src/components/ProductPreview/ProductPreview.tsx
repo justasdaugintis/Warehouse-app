@@ -18,7 +18,18 @@ interface ParamTypes {
  */
 export const ProductPreview: React.FC = () => {
   const { TabPane } = Tabs;
+
   const translate = useFormatMessage();
+
+  let { id } = useParams<ParamTypes>();
+
+  const { products } = useSelector((state: IRootState) => state.warehouseData);
+
+  //finds a product from the redux store where the id is matching with the url param
+  const product: IProduct[] = products.filter((product: IProduct) => product.id === id);
+
+  const history = useHistory();
+
   const columns = [
     {
       title: translate({ id: "productListTable.name" }),
@@ -63,14 +74,6 @@ export const ProductPreview: React.FC = () => {
         text ? translate({ id: "productListTable.active" }) : translate({ id: "productListTable.disabled" }),
     },
   ];
-
-  let { id } = useParams<ParamTypes>();
-
-  const { products } = useSelector((state: IRootState) => state.warehouseData);
-
-  const product: IProduct[] = products.filter((product: IProduct) => product.id === id);
-
-  const history = useHistory();
 
   return product.length > 0 ? (
     <Fragment>

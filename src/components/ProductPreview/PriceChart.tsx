@@ -22,10 +22,12 @@ export const PriceChart: React.FC = () => {
 
   const { priceHistory } = useSelector((state: IRootState) => state.productHistoryData);
 
+  // Finds a price history element from the redux store where the id is matching with the url param
   const product: IPriceHistory[] = priceHistory.filter((priceHistory: IPriceHistory) => priceHistory.productId === id);
 
   let chartData: any = [];
 
+  // Remaps price data to be displayed in the chart
   product.forEach((element: IPriceHistory) => {
     element.history.forEach((node: IPriceHistoryNode) => {
       let price = parseInt(node.price.replace("$", ""));

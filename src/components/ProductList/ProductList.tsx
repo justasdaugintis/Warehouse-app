@@ -21,12 +21,14 @@ export const ProductList: React.FC = () => {
 
   const history = useHistory();
 
+  // Deletes a product from the redux store
   const deleteProduct = (record: any): void => {
     dispatch(warehouseActions.deleteProduct(record.id));
   };
 
   const translate = useFormatMessage();
 
+  // Selects a table row
   const onSelectChange = (selectedRowKeys: any) => {
     setSelectedRowKeys(selectedRowKeys);
   };
@@ -36,6 +38,7 @@ export const ProductList: React.FC = () => {
     onChange: onSelectChange,
   };
 
+  // Changes the active field value for a product in redux state
   const tickCheckbox = (e: CheckboxChangeEvent, record: any) => {
     let payload = {
       id: record.id,

@@ -21,10 +21,12 @@ export const QuantityChart: React.FC = () => {
 
   const { quantityHistory } = useSelector((state: IRootState) => state.productHistoryData);
 
+  // Finds a a quantity history element from the redux store where the id is matching with the url param
   const quantity: IQuantityHistory[] = quantityHistory.filter((item: IQuantityHistory) => item.productId === id);
 
   let chartData: any = [];
 
+  // Remaps quantity data to be displayed in the chart
   quantity.forEach((element: IQuantityHistory) => {
     element.history.forEach((node: IQuantityHistoryNode) => {
       let date = new Date(node.timeStamp);

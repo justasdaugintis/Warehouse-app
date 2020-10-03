@@ -27,6 +27,7 @@ const tailFormItemLayout = {
   },
 };
 
+// Component props
 interface IProps {
   productToEdit?: IProduct;
   onSubmit: any;

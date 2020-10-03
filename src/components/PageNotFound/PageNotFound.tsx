@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useFormatMessage } from "react-intl-hooks";
 
 /**
- *  Component renders when product id is not found
+ *  Component renders when page is not found
  */
 export const PageNotFound: React.FC = () => {
   const translate = useFormatMessage();

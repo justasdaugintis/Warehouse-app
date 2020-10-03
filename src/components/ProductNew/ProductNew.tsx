@@ -8,7 +8,9 @@ import { useFormatMessage } from "react-intl-hooks";
  */
 export const ProductNew: React.FC = () => {
   const history = useHistory();
+
   const translate = useFormatMessage();
+
   return (
     <Fragment>
       <PageHeader

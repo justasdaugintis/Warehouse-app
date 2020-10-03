@@ -21,6 +21,7 @@ export const ProductEdit: React.FC = () => {
 
   const { products } = useSelector((state: IRootState) => state.warehouseData);
 
+  //finds a product from the redux store where the id from the url is matching
   const product: IProduct | undefined = products.find((product: IProduct) => product.id === id);
 
   const history = useHistory();

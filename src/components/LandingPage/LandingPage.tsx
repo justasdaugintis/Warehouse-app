@@ -4,7 +4,7 @@ import { Typography } from "antd";
 
 const { Title } = Typography;
 /**
- *  Component responsible for rendering a product form for a new product
+ *  Landing page component
  */
 export const LandingPage: React.FC = () => {
   const translate = useFormatMessage();
