@@ -24,9 +24,7 @@ export const ActiveCheckbox: React.FC<IProps> = ({ text, record, tickCheckbox, t
         onChange={(e: CheckboxChangeEvent) => {
           tickCheckbox(e, record);
         }}
-      >
-        {translate({ id: "productListTable.activeCheckbox" })}
-      </Checkbox>
+      ></Checkbox>
     </Space>
   );
 };
