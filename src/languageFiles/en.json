@@ -57,6 +57,8 @@
   "productPreview.detailsTab": "Product details",
   "productPreview.priceHistoryTab": "Price history",
   "productPreview.quantityHistoryTab": "Quantity history",
+  "productPreview.noProductTitle": "Return to product list",
+  "productPreview.noProductFound": "Product with id: {id} has not been found",
 
   "priceHistoryChart.title": "Price changes",
   "priceHistoryChart.xAxisTitle": "Date",
@@ -64,5 +66,8 @@
 
   "quantityHistoryChart.title": "Quantity changes",
   "quantityHistoryChart.xAxisTitle": "Date",
-  "quantityHistoryChart.yAxisTitle": "Quantity (units)"
+  "quantityHistoryChart.yAxisTitle": "Quantity (units)",
+
+  "pageNotFound.backToHome": "Return to home page",
+  "pageNotFound.noPageFound": "The page you are looking for does not exist..."
 }

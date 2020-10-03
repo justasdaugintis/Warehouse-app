@@ -72,7 +72,7 @@ export const ProductPreview: React.FC = () => {
 
   const history = useHistory();
 
-  return (
+  return product.length > 0 ? (
     <Fragment>
       <PageHeader
         className="site-page-header"
@@ -92,6 +92,19 @@ export const ProductPreview: React.FC = () => {
           <QuantityChart />
         </TabPane>
       </Tabs>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => {
+          history.push("/products");
+        }}
+        title={translate({ id: "productPreview.noProductTitle" })}
+      />
+      <p style={{ color: "red", fontSize: "18px", marginLeft: "2.5rem" }}>
+        {translate({ id: "productPreview.noProductFound" }, { id: id })}
+      </p>
     </Fragment>
   );
 };

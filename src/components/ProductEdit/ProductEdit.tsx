@@ -25,7 +25,7 @@ export const ProductEdit: React.FC = () => {
 
   const history = useHistory();
 
-  return (
+  return product ? (
     <Fragment>
       <PageHeader
         className="site-page-header"
@@ -35,6 +35,19 @@ export const ProductEdit: React.FC = () => {
         title={translate({ id: "productEdit.title" })}
       />
       <ProductForm productToEdit={product} />
+    </Fragment>
+  ) : (
+    <Fragment>
+      <PageHeader
+        className="site-page-header"
+        onBack={() => {
+          history.push("/products");
+        }}
+        title={translate({ id: "productPreview.noProductTitle" })}
+      />
+      <p style={{ color: "red", fontSize: "18px", marginLeft: "2.5rem" }}>
+        {translate({ id: "productPreview.noProductFound" }, { id: id })}
+      </p>
     </Fragment>
   );
 };

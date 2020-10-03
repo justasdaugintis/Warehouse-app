@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import { LandingPage } from "../components/LandingPage";
+import { PageNotFound } from "../components/PageNotFound";
 import { ProductEdit } from "../components/ProductEdit";
 import { ProductList } from "../components/ProductList";
 import { ProductNew } from "../components/ProductNew";
@@ -18,6 +19,7 @@ const Routes: React.FC = () => {
         <Route exact={true} path="/products/create" component={ProductNew} />
         <Route exact={true} path="/products/:id/edit" component={ProductEdit} />
         <Route exact={true} path="/products/:id" component={ProductPreview} />
+        <Route component={PageNotFound} />
       </Switch>
     </Fragment>
   );

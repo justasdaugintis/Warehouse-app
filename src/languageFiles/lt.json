@@ -57,12 +57,17 @@
   "productPreview.detailsTab": "Produkto Aprašymas",
   "productPreview.priceHistoryTab": "Kainų istorija",
   "productPreview.quantityHistoryTab": "Kiekio istorija",
+  "productPreview.noProductTitle": "Grįžti į prekių sąrašą",
+  "productPreview.noProductFound": "Produktas, kurio ID: {id} nerastas",
 
-  "priceHistoryChart.title": "Price changes",
+  "priceHistoryChart.title": "Kainų pokyčiai",
   "priceHistoryChart.xAxisTitle": "Data",
   "priceHistoryChart.yAxisTitle": "Kaina (USD)",
 
   "quantityHistoryChart.title": "Kiekio pokyčiai",
   "quantityHistoryChart.xAxisTitle": "Data",
-  "quantityHistoryChart.yAxisTitle": "Kiekis (vienetais)"
+  "quantityHistoryChart.yAxisTitle": "Kiekis (vienetais)",
+
+  "pageNotFound.backToHome": "Grįžti į pagrindinį puslapį",
+  "pageNotFound.noPageFound": "Puslapio, kurio ieškote, nėra ..."
 }
