@@ -1,7 +1,14 @@
 # Warehouse-app
 Technical task for Talech
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tools used
+Create-react-app for app skeleton
+Redux/toolkit for state management
+Redux-persist for persisting state to local storage
+Ant Design UI framework for UI elements and layout
+React-router for routing
+React-intl for internationalization
+Highcharts for data visualization in charts
 
 ## Available Scripts
 
