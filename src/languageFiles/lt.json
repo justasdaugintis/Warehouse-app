@@ -10,7 +10,7 @@
 
   "productEdit.title": "Redaguoti produktą",
 
-  "productForm.name": "Vardas",
+  "productForm.name": "Pavadinimas",
   "productForm.nameRequired": "Būtinas produkto pavadinimas",
   "productForm.eanTooltip": "Europos gaminio numeris - 13 skaitmenų produkto identifikatorius",
   "productForm.eanRequired": "Reikalingas EAN",
@@ -34,7 +34,7 @@
   "productForm.productSaved": "Produktas sukurtas",
   "productForm.productEdited": "Produktas atnaujintas",
 
-  "productListTable.name": "Vardas",
+  "productListTable.name": "Pavadinimas",
   "productListTable.ean": "EAN",
   "productListTable.type": "Tipas",
   "productListTable.weight": "Svoris",
