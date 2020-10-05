@@ -32,7 +32,7 @@ const AppLayout: React.FC = () => {
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["/"]} selectedKeys={[location.pathname]}>
           <Menu.Item key="/">
             <Link to="/">
-              <HomeOutlined style={{ marginLeft: "8px" }} />
+              <HomeOutlined className="home-icon" />
             </Link>
           </Menu.Item>
 
@@ -55,7 +55,7 @@ const AppLayout: React.FC = () => {
         </Menu>
       </Header>
 
-      <Content style={{ padding: "0 50px" }}>
+      <Content className="content-wrapper">
         <div className="site-layout-content">
           <RoutedComponent />
         </div>

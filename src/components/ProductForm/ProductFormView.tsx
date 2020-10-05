@@ -1,7 +1,6 @@
 import React from "react";
 import { Form, Input, Tooltip, Checkbox, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import "./style.scss";
 import { IProduct } from "../../sharedInterfaces/IProduct";
 
 const formItemLayout = {

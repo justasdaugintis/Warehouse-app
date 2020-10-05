@@ -7,8 +7,6 @@ import { IProduct } from "../../sharedInterfaces/IProduct";
 import { useHistory } from "react-router-dom";
 import { productHistoryActions } from "../../reducers/ProductHistorySlice";
 import { ProductFormView } from "./ProductFormView";
-import "./style.scss";
-
 import { useFormatMessage } from "react-intl-hooks";
 
 // Components props

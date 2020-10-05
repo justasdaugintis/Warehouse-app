@@ -21,9 +21,7 @@ export const PageNotFound: React.FC = () => {
         }}
         title={translate({ id: "pageNotFound.backToHome" })}
       />
-      <p style={{ color: "red", fontSize: "18px", marginLeft: "2.5rem" }}>
-        {translate({ id: "pageNotFound.noPageFound" })}
-      </p>
+      <p className="not-found">{translate({ id: "pageNotFound.noPageFound" })}</p>
     </Fragment>
   );
 };

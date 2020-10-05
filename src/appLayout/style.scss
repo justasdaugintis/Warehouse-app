@@ -1,5 +1,19 @@
+.content-wrapper {
+  padding: 0 50px;
+}
+
 .site-layout-content {
   padding: 24px;
   min-height: 400px;
   background: #fff;
+}
+
+.home-icon {
+  margin-left: 8px;
+}
+
+.not-found {
+  color: red;
+  font-size: 18px;
+  margin-left: 3.5rem;
 }
