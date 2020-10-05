@@ -8,6 +8,7 @@ import { IProduct } from "../../sharedInterfaces/IProduct";
 import { PriceChart } from "./PriceChart";
 import { QuantityChart } from "./QuantityChart";
 import { useFormatMessage } from "react-intl-hooks";
+import { ProductNotFound } from "../ProductNotFound";
 
 //Parameter passed down from react router
 interface ParamTypes {
@@ -97,17 +98,12 @@ export const ProductPreview: React.FC = () => {
       </Tabs>
     </Fragment>
   ) : (
-    <Fragment>
-      <PageHeader
-        className="site-page-header"
-        onBack={() => {
-          history.push("/products");
-        }}
-        title={translate({ id: "productPreview.noProductTitle" })}
-      />
-      <p style={{ color: "red", fontSize: "18px", marginLeft: "2.5rem" }}>
-        {translate({ id: "productPreview.noProductFound" }, { id: id })}
-      </p>
-    </Fragment>
+    <ProductNotFound
+      productId={id}
+      onBack={() => {
+        history.push("/products");
+      }}
+      translate={translate}
+    />
   );
 };

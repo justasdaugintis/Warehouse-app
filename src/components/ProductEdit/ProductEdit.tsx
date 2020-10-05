@@ -6,6 +6,7 @@ import { IRootState } from "../../reducers/CombinedReducer";
 import { IProduct } from "../../sharedInterfaces/IProduct";
 import { ProductForm } from "../ProductForm";
 import { useFormatMessage } from "react-intl-hooks";
+import { ProductNotFound } from "../ProductNotFound";
 
 //Parameter passed down from react router
 interface ParamTypes {
@@ -38,17 +39,12 @@ export const ProductEdit: React.FC = () => {
       <ProductForm productToEdit={product} />
     </Fragment>
   ) : (
-    <Fragment>
-      <PageHeader
-        className="site-page-header"
-        onBack={() => {
-          history.push("/products");
-        }}
-        title={translate({ id: "productPreview.noProductTitle" })}
-      />
-      <p style={{ color: "red", fontSize: "18px", marginLeft: "2.5rem" }}>
-        {translate({ id: "productPreview.noProductFound" }, { id: id })}
-      </p>
-    </Fragment>
+    <ProductNotFound
+      productId={id}
+      onBack={() => {
+        history.push("/products");
+      }}
+      translate={translate}
+    />
   );
 };
